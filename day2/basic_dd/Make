@@ -1,4 +1,0 @@
-obj-m += basic_driver.o
-
-all:
-	make -C /lib/modules/$()
