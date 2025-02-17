@@ -1,0 +1,23 @@
+/dts-v1/;                       // Specifies the version of the Device Tree syntax being used
+
+/plugin/;                        // Indicates that this is a device tree fragment for a plugin (overlay)
+
+/{  
+    compatible = "brcm,bcm2835";  // This node is compatible with the Broadcom BCM2835 SoC (e.g., Raspberry Pi)
+
+    fragment@0 {                 // Define a fragment (overlay part) to modify an existing device tree
+        target = <&gpio>;        // This fragment will modify the 'gpio' (General Purpose Input/Output) node
+
+        __overlay__ {            // Begin the overlay section to modify GPIO configuration
+           
+           gpio_led: gpio_led { // Define a new node named 'gpio_led' to control the LED
+               
+               gpios = <&gpio 27 0>;  // Configure GPIO 27 (pin 27) to control the LED
+                                       // - The '0' means the signal is "active low"
+                                       // - GPIO 27 corresponds to physical pin 27 on the Raspberry Pi
+                                       // - An active low signal means the LED turns on when the GPIO is set low
+           };
+
+        };
+    };
+};
